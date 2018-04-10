@@ -48,10 +48,11 @@ def delete_line_breaks(text, joiner):
 
 
 def make_dataset_in_query(search_query, max_results, min_num_words=0):
-    """
+    """ Makes dataset in query
 
     :param search_query: query articles in area of study
     :param max_results: max number of articles
+    :param min_num_words: filter for minimum number an abstract should have
     :return:
     """
     # Keyword search
@@ -106,6 +107,15 @@ def make_dataset_in_query(search_query, max_results, min_num_words=0):
 
 
 def make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=0):
+    """ Makes dataset in a group of queries
+
+    :param search_queries: list of search_query, format: {"query1", "query2"}
+    :param max_results: max number of articles
+    :param min_num_words: filter for minimum number an abstract should have
+    :return:
+    """
+
+
     for search_query in search_queries:
         make_dataset_in_query(search_query, max_results, min_num_words)
 
