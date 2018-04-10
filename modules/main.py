@@ -32,7 +32,7 @@ def check_for_url(text):
     except:
         print(text)
         print("Error")
-        return False
+        return True
 
 
 def delete_line_breaks(text, joiner):
@@ -47,7 +47,7 @@ def delete_line_breaks(text, joiner):
     return text
 
 
-def make_dataset(search_query, max_results):
+def make_dataset_in_query(search_query, max_results, min_num_words=0):
     """
 
     :param search_query: query articles in area of study
@@ -73,8 +73,11 @@ def make_dataset(search_query, max_results):
         title_has_pattern = check_for_str(str_title_tmp, "Proceedings of the")
         abs_has_pattern = check_for_str(str_abs_tmp, "Proceedings of the")
 
+        # Check min number of words
+        word_count = len(str_abs_tmp.split())
+
         # Save title-abs combination in var
-        if not (title_has_url or abs_has_url or title_has_pattern or abs_has_pattern):
+        if not (title_has_url or abs_has_url or title_has_pattern or abs_has_pattern) and word_count >= min_num_words:
             str_title += str_title_tmp + '\n'
             str_abs += str_abs_tmp + '\n'
 
@@ -84,10 +87,12 @@ def make_dataset(search_query, max_results):
         os.makedirs(results_dir)
 
     num_articles = len(str_title.split('\n')) - 1
-    filename_title = results_dir + '{search_query}_{num_articles}_{max_results}_title.txt'. \
-        format(search_query=search_query, num_articles=num_articles, max_results=max_results)
-    filename_abs = results_dir + '{search_query}_{num_articles}_{max_results}_abs.txt'. \
-        format(search_query=search_query, num_articles=num_articles, max_results=max_results)
+    filename_title = results_dir + '{search_query}_{num_articles}_{max_results}_{min_num_words}_title.txt'. \
+        format(search_query=search_query, num_articles=num_articles, max_results=max_results,
+               min_num_words=min_num_words)
+    filename_abs = results_dir + '{search_query}_{num_articles}_{max_results}_{min_num_words}_abs.txt'. \
+        format(search_query=search_query, num_articles=num_articles, max_results=max_results,
+               min_num_words=min_num_words)
     file_title = open(filename_title, 'w')
     file_abs = open(filename_abs, 'w')
 
@@ -100,12 +105,23 @@ def make_dataset(search_query, max_results):
     file_abs.close()
 
 
+def make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=0):
+    for search_query in search_queries:
+        make_dataset_in_query(search_query, max_results, min_num_words)
+
+
 if __name__ == '__main__':
 
-    # Make dataset in area: "artificial intelligence"
-    search_query = "artificial intelligence"
-    max_results = 100
-    make_dataset(search_query, max_results)
+    # TODO: fix problem when max_results is too big, like 100000 (issue submitted)
 
-    # Other search queries: computer vision, language generation
+    ## Make dataset in single query/area
+    #search_query = "artificial intelligence"
+    #max_results = 10000
+    #min_num_words = 15
+    #make_dataset_in_query(search_query, max_results, min_num_words)
 
+    # Group of queries
+    search_queries = {"artificial intelligence", "computer vision", "language generation"}
+    max_results = 10000
+    min_num_words = 15
+    make_dataset_in_group_of_queries(search_queries, max_results, min_num_words)
