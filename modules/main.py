@@ -1,6 +1,6 @@
 
 import arxiv
-import re
+import regex as re
 from modules import regex_markers
 import os
 
@@ -27,7 +27,12 @@ def check_for_url(text):
     :param text: string to check for URL in
     :return: boolean confirming or denying the presence of URL in string
     """
-    return check_for_str(regex_markers.WEB_URL_REGEX, text)
+    try:
+        return check_for_str(re.escape(regex_markers.WEB_URL_REGEX), text)
+    except:
+        print(text)
+        print("Error")
+        return False
 
 
 def delete_line_breaks(text, joiner):
@@ -42,11 +47,14 @@ def delete_line_breaks(text, joiner):
     return text
 
 
-if __name__ == '__main__':
+def make_dataset(search_query, max_results):
+    """
 
+    :param search_query: query articles in area of study
+    :param max_results: max number of articles
+    :return:
+    """
     # Keyword search
-    search_query = "artificial intelligence"
-    max_results = 100
     articles = arxiv.query(search_query=search_query, max_results=max_results)
 
     str_title = ''
@@ -76,9 +84,9 @@ if __name__ == '__main__':
         os.makedirs(results_dir)
 
     num_articles = len(str_title.split('\n')) - 1
-    filename_title = results_dir + 'title_{search_query}_{num_articles}_{max_results}.txt'.\
+    filename_title = results_dir + '{search_query}_{num_articles}_{max_results}_title.txt'. \
         format(search_query=search_query, num_articles=num_articles, max_results=max_results)
-    filename_abs = results_dir + 'abs_{search_query}_{num_articles}_{max_results}.txt'.\
+    filename_abs = results_dir + '{search_query}_{num_articles}_{max_results}_abs.txt'. \
         format(search_query=search_query, num_articles=num_articles, max_results=max_results)
     file_title = open(filename_title, 'w')
     file_abs = open(filename_abs, 'w')
@@ -90,3 +98,14 @@ if __name__ == '__main__':
     # Close files
     file_title.close()
     file_abs.close()
+
+
+if __name__ == '__main__':
+
+    # Make dataset in area: "artificial intelligence"
+    search_query = "artificial intelligence"
+    max_results = 100
+    make_dataset(search_query, max_results)
+
+    # Other search queries: computer vision, language generation
+
