@@ -1,7 +1,7 @@
 
 import arxiv
 import re
-import regex_markers
+from modules import regex_markers
 import os
 
 __author__ = "Gwena Cunha"
