@@ -3,7 +3,7 @@
 * Extract Abstract and Title Dataset from arXiv articles
 * Domain of articles: search_query (i.e. Artificial Intelligence), case insensitive
 * Exclude articles that have URL or "Proceeding of the" in the Title or Abstract
-* Results filename format: <query>_<numner of articles>_<max number of articles>_<minimum number of words in abstract>
+* Results filename format: ```<query>_<start index>_<max number of articles is paging>_<actual number of articles>_<total max number of articles>_<minimum number of words in abstract>```
 
 ## Code
 * Required to detect URLs and patterns
