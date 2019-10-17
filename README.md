@@ -2,7 +2,7 @@
 Extracts Abstract and Title Dataset from arXiv articles
 
 #### Contents
-[Requirements](#requirements) • [Code](#code) • [How to Make](#how-to-make) • [How to Cite](#acknowledgement) 
+[Requirements](#requirements) • [Code](#code) • [How to Cite](#acknowledgement) 
 
 ## Requirements
 * Required to detect URLs and patterns
