@@ -23,7 +23,7 @@ Extracts Abstract and Title Dataset from arXiv articles
 ## Acknowledgement
 Please star or fork if this code was useful for you. If you use it in a paper, please cite as:
 ```
-@misc{cunha_sergio2019arxiv_abstract2title,
+@software{cunha_sergio2019arxiv_abstract2title,
     author       = {Gwenaelle Cunha Sergio},
     title        = {{gcunhase/ArXivAbsTitleDataset: Extracting Abstract and Title Dataset from arXiv articles}},
     month        = oct,
