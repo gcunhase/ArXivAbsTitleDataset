@@ -1,8 +1,10 @@
+[![DOI](https://zenodo.org/badge/128865634.svg)](https://zenodo.org/badge/latestdoi/128865634)
+
 ## About
 Extracts Abstract and Title Dataset from arXiv articles
 
 #### Contents
-[Requirements](#requirements) • [Code](#code) • [How to Cite](#acknowledgement) 
+[Requirements](#requirements) • [Code](#code) • [How to Cite](#acknowledgement)
 
 ## Requirements
 * Required to detect URLs and patterns
