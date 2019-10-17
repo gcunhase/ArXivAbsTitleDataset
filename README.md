@@ -3,7 +3,7 @@
 ## About
 Extracts Abstract and Title Dataset from arXiv articles
 
-#### Contents
+### Contents
 [Requirements](#requirements) • [Code](#code) • [How to Cite](#acknowledgement)
 
 ## Requirements
