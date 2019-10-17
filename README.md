@@ -25,7 +25,7 @@ Please star or fork if this code was useful for you. If you use it in a paper, p
 ```
 @misc{cunha_sergio2019arxiv_abstract2title,
     author       = {Gwenaelle Cunha Sergio},
-    title        = {Extracting Abstract and Title Dataset from arXiv articles},
+    title        = {{gcunhase/ArXivAbsTitleDataset: Extracting Abstract and Title Dataset from arXiv articles}},
     month        = oct,
     year         = 2019,
     doi          = {10.5281/zenodo.3496527},
