@@ -214,12 +214,12 @@ if __name__ == '__main__':
     # Make dataset in single query/area
     search_query = "artificial intelligence"
     max_results = 15000
-    min_num_words = 15
+    min_num_words = 200
     make_dataset_in_query(search_query, max_results, min_num_words=min_num_words, results_dir=results_dir)
 
     # Group of queries
-    search_queries = {"computer vision", "language generation"}
-    max_results = 15000
-    min_num_words = 15
-    make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=min_num_words, results_dir=results_dir)
+    #search_queries = {"computer vision", "language generation"}
+    #max_results = 15000
+    #min_num_words = 15
+    #make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=min_num_words, results_dir=results_dir)
 
