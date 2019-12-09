@@ -7,18 +7,19 @@ Extracts Abstract and Title Dataset from arXiv articles
 [Requirements](#requirements) • [Code](#code) • [How to Cite](#acknowledgement)
 
 ## Requirements
-* Required to detect URLs and patterns
+* Python 3.6
   ```
-  pip install regex arxiv
-
-  from regex import re
+  pip install -r requirements.txt
   ```
-  > `pip install arxiv`: [lukasschwab's Python wrapper](https://github.com/lukasschwab/arxiv.py) for the [arXiv API](http://arxiv.org/help/api/index)
+  > `arxiv`: [lukasschwab's Python wrapper](https://github.com/lukasschwab/arxiv.py) for the [arXiv API](http://arxiv.org/help/api/index)
 
 ## Code
 * Domain of articles: search_query (i.e. Artificial Intelligence), case insensitive
 * Exclude articles that have URL or "Proceeding of the" in the Title or Abstract
-* Results filename format: ```<query>_<start index>_<max number of articles is paging>_<actual number of articles>_<total max number of articles>_<minimum number of words in abstract>```
+* Results filename format:
+    ```
+    <QUERY>_<START_INDEX>_<MAX_NUMBER_ARTICLES_IN_PAGING>_<ACTUAL_NUMBER_ARTICLES>_<TOTAL_MAX_NUMBER_ARTICLES>_<MIN_NUMBER_WORDS_ABS>
+    ```
 
 ## Acknowledgement
 Please star or fork if this code was useful for you. If you use it in a paper, please cite as:
