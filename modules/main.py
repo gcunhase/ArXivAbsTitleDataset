@@ -9,6 +9,11 @@ __author__ = "Gwena Cunha"
 MAX_RES = 10000
 
 
+def ensure_dir(dirname):
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
+
 def check_for_str(text, pattern):
     """ Checks for pattern in text
 
@@ -49,7 +54,7 @@ def delete_line_breaks(text, joiner):
     return text
 
 
-def make_dataset_in_query(search_query, max_results, min_num_words=0):
+def make_dataset_in_query(search_query, max_results, min_num_words=0, results_dir='results/'):
     """ Checks if max_result is bigger than MAX_RES
 
         Problem when max_results is too big (bigger than 10000)
@@ -62,11 +67,8 @@ def make_dataset_in_query(search_query, max_results, min_num_words=0):
     :return:
     """
 
-
     # Create results directory if not existent
-    results_dir = "results/"
-    if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
+    ensure_dir(results_dir)
 
     # Paging
     times_to_run = 0
@@ -142,7 +144,7 @@ def make_dataset(search_query, max_paging, max_results, min_num_words=0, start=0
              1 int (num of articles)
     """
     # Keyword search
-    articles = arxiv.query(search_query=search_query, max_results=max_paging, start=start)
+    articles = arxiv.query(query=search_query, max_results=max_paging, start=start)
 
     str_title = ''
     str_abs = ''
@@ -191,7 +193,7 @@ def make_dataset(search_query, max_paging, max_results, min_num_words=0, start=0
     return filename_title, filename_abs, num_articles
 
 
-def make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=0):
+def make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=0, results_dir='results/'):
     """ Makes dataset in a group of queries
 
     :param search_queries: list of search_query, format: {"query1", "query2"}
@@ -202,20 +204,22 @@ def make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=
     """
 
     for search_query in search_queries:
-        make_dataset_in_query(search_query, max_results, min_num_words)
+        make_dataset_in_query(search_query, max_results, min_num_words, results_dir=results_dir)
 
 
 if __name__ == '__main__':
 
-    ## Make dataset in single query/area
+    results_dir = '../results/'
+
+    # Make dataset in single query/area
     search_query = "artificial intelligence"
     max_results = 15000
     min_num_words = 15
-    make_dataset_in_query(search_query, max_results, min_num_words=min_num_words)
+    make_dataset_in_query(search_query, max_results, min_num_words=min_num_words, results_dir=results_dir)
 
-    ## Group of queries
+    # Group of queries
     search_queries = {"computer vision", "language generation"}
     max_results = 15000
     min_num_words = 15
-    make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=min_num_words)
+    make_dataset_in_group_of_queries(search_queries, max_results, min_num_words=min_num_words, results_dir=results_dir)
 
